@@ -1,6 +1,8 @@
 import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
+import {Label} from "@/components/ui/label";
+import {Switch} from "@/components/ui/switch";
 
 type Props = {
     name: string;
@@ -10,6 +12,7 @@ type Props = {
 };
 const Workflow = ({name, description, id, publish}: Props) => {
     // CHALLENGE
+    // WIP: Wire up DB
     return (
         <Card className="flex w-full items-center justify-between">
             <CardHeader className="flex flex-col gap-4">
@@ -43,6 +46,19 @@ const Workflow = ({name, description, id, publish}: Props) => {
                     </div>
                 </Link>
             </CardHeader>
+            <div className="flex flex-col items-center gap-2 p-4">
+                <Label
+                    htmlFor="airplane-mode"
+                    className="text-muted-foreground"
+                >
+                    On
+                </Label>
+                <Switch
+                    id="airplane-mode"
+                    // onClick={onPublishFlow}
+                    // defaultChecked={props.publish}
+                />
+            </div>
         </Card>
     );
 };
