@@ -9,21 +9,38 @@ import {CONNECTIONS, EditorCanvasDefaultCardTypes} from "@/lib/constants";
 import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import EditorCanvasIconHelper
     from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/editor-canvas-icon-helper";
-import {onDragStart} from "@/lib/editor-utils";
+import {fetchBotSlackChannels, onConnections, onDragStart} from "@/lib/editor-utils";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 import RenderConnectionAccordion
     from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/render-connection-accordion";
 import RenderOutputAccordion
     from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/render-output-accordion";
+import {useOrchestrStore} from "@/store";
+import {useEffect} from "react";
 
 type Props = {
     nodes: EditorNodeType[];
 
 };
 const EditorCanvasSidebar = ({nodes}: Props) => {
-    //WIP: Connect DB stuff
     const {state} = useEditor();
     const {nodeConnection} = useNodeConnections();
+    const {googleFile, setSlackChannels} = useOrchestrStore();
+
+    useEffect(() => {
+        if (state) {
+            onConnections(nodeConnection, state, googleFile);
+        }
+    }, [state]);
+
+    useEffect(() => {
+        if (nodeConnection.slackNode.slackAccessToken) {
+            fetchBotSlackChannels(
+                nodeConnection.slackNode.slackAccessToken,
+                setSlackChannels
+            );
+        }
+    }, [nodeConnection]);
 
     return (
         <aside>

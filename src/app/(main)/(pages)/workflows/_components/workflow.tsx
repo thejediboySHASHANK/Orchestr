@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import {Label} from "@/components/ui/label";
 import {Switch} from "@/components/ui/switch";
+import {onFlowPublish} from "@/app/(main)/(pages)/workflows/editor/[editorId]/_actions/workflow-connections";
+import {toast} from "sonner";
 
 type Props = {
     name: string;
@@ -11,8 +13,14 @@ type Props = {
     publish: boolean | null;
 };
 const Workflow = ({name, description, id, publish}: Props) => {
-    // CHALLENGE
-    // WIP: Wire up DB
+    const onPublishFlow = async (event: any) => {
+        const response = await onFlowPublish(
+            id,
+            event.target.ariaChecked === 'false',
+        );
+        if (response) toast.message(response);
+    }
+
     return (
         <Card className="flex w-full items-center justify-between">
             <CardHeader className="flex flex-col gap-4">
@@ -51,12 +59,12 @@ const Workflow = ({name, description, id, publish}: Props) => {
                     htmlFor="airplane-mode"
                     className="text-muted-foreground"
                 >
-                    On
+                    {publish ? 'On' : 'Off'}
                 </Label>
                 <Switch
                     id="airplane-mode"
                     // onClick={onPublishFlow}
-                    // defaultChecked={props.publish}
+                    defaultChecked={publish!}
                 />
             </div>
         </Card>

@@ -7,6 +7,7 @@ import {Input} from "@/components/ui/input";
 import {onContentChange} from "@/lib/editor-utils";
 import GoogleFileDetails from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/google-file-details";
 import GoogleDriveFiles from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/google-drive-files";
+import ActionButton from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/action-button";
 
 export interface Option {
     value: string
@@ -96,12 +97,12 @@ const ContentBasedOnTitle = ({
                         </Card>
                     )}
                     {title === 'Google Drive' && <GoogleDriveFiles />}
-                    {/*<ActionButton*/}
-                    {/*    currentService={title}*/}
-                    {/*    nodeConnection={nodeConnection}*/}
-                    {/*    channels={selectedSlackChannels}*/}
-                    {/*    setChannels={setSelectedSlackChannels}*/}
-                    {/*/>*/}
+                    <ActionButton
+                        currentService={title}
+                        nodeConnection={nodeConnection}
+                        channels={selectedSlackChannels}
+                        setChannels={setSelectedSlackChannels}
+                    />
                 </div>
             </Card>
         </AccordionContent>

@@ -21,6 +21,7 @@ const GoogleDriveFiles = (props: Props) => {
             setLoading(false);
             setIsListening(true);
         }
+        setIsListening(false);
     }
 
     const onListener = async () => {
