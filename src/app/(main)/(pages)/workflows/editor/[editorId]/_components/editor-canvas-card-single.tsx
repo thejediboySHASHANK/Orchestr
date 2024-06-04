@@ -1,33 +1,41 @@
-import {EditorCanvasCardType} from "@/lib/types";
-import {useEditor} from "@/providers/editor-provider";
-import {Position, useNodeId} from "reactflow";
-import {useMemo} from "react";
+import { EditorCanvasCardType } from '@/lib/types'
+import { useEditor } from '@/providers/editor-provider'
+import React, { useMemo } from 'react'
+import { Position, useNodeId } from 'reactflow'
 import EditorCanvasIconHelper
     from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/editor-canvas-icon-helper";
-import CustomHandle from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/custom-handle";
-import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
-import {clsx} from "clsx";
+import CustomHandle from './custom-handle'
+import { Badge } from '@/components/ui/badge'
 
-type Props = {};
-const EditorCanvasCardSingle = ({data}: { data: EditorCanvasCardType }) => {
-    const {dispatch, state} = useEditor();
-    const nodeId = useNodeId();
+import {
+    Card,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card'
+import clsx from 'clsx'
+
+type Props = {}
+
+const EditorCanvasCardSingle = ({ data }: { data: EditorCanvasCardType }) => {
+    const { dispatch, state } = useEditor()
+    const nodeId = useNodeId()
     const logo = useMemo(() => {
-        return <EditorCanvasIconHelper type={data.type}/>
-    }, [data]);
+        return <EditorCanvasIconHelper type={data.type} />
+    }, [data])
+
     return (
         <>
             {data.type !== 'Trigger' && data.type !== 'Google Drive' && (
                 <CustomHandle
                     type="target"
                     position={Position.Top}
-                    style={{zIndex: 100}}
+                    style={{ zIndex: 100 }}
                 />
             )}
             <Card
                 onClick={(e) => {
-                    e.stopPropagation();
+                    e.stopPropagation()
                     const val = state.editor.elements.find((n) => n.id === nodeId)
                     if (val)
                         dispatch({
@@ -62,11 +70,9 @@ const EditorCanvasCardSingle = ({data}: { data: EditorCanvasCardType }) => {
                     className={clsx('absolute left-3 top-4 h-2 w-2 rounded-full', {
                         'bg-green-500': Math.random() < 0.6,
                         'bg-orange-500': Math.random() >= 0.6 && Math.random() < 0.8,
-                        'bg-red-500': Math.random() >= 0.8
+                        'bg-red-500': Math.random() >= 0.8,
                     })}
-                >
-
-                </div>
+                ></div>
             </Card>
             <CustomHandle
                 type="source"
@@ -74,6 +80,7 @@ const EditorCanvasCardSingle = ({data}: { data: EditorCanvasCardType }) => {
                 id="a"
             />
         </>
-    );
-};
-export default EditorCanvasCardSingle;
+    )
+}
+
+export default EditorCanvasCardSingle

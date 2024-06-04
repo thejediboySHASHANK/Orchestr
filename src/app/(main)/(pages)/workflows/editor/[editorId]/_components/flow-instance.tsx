@@ -1,56 +1,57 @@
 'use client'
-
-import React, {useCallback, useEffect, useState} from "react";
-import {usePathname} from "next/navigation";
-import {useNodeConnections} from "@/providers/connections-providers";
-import {Button} from "@/components/ui/button";
-import {toast} from "sonner";
+import { Button } from '@/components/ui/button'
+import{useNodeConnections} from "@/providers/connections-providers";
+import { usePathname } from 'next/navigation'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
     onCreateNodesEdges,
-    onFlowPublish
-} from "@/app/(main)/(pages)/workflows/editor/[editorId]/_actions/workflow-connections";
+    onFlowPublish,
+} from '../_actions/workflow-connections'
+import { toast } from 'sonner'
 
 type Props = {
-    children: React.ReactNode;
+    children: React.ReactNode
     edges: any[]
     nodes: any[]
-};
-const FlowInstance = ({children, edges, nodes}: Props) => {
-    const pathName = usePathname();
-    const [isFlow, setIsFlow] = useState([]);
-    const {nodeConnection} = useNodeConnections();
+}
+
+const FlowInstance = ({ children, edges, nodes }: Props) => {
+    const pathname = usePathname()
+    const [isFlow, setIsFlow] = useState([])
+    const { nodeConnection } = useNodeConnections()
 
     const onFlowAutomation = useCallback(async () => {
         const flow = await onCreateNodesEdges(
-            pathName.split('/').pop()!,
+            pathname.split('/').pop()!,
             JSON.stringify(nodes),
             JSON.stringify(edges),
             JSON.stringify(isFlow)
         )
 
         if (flow) toast.message(flow.message)
-    }, [nodeConnection]);
+    }, [nodeConnection])
 
     const onPublishWorkflow = useCallback(async () => {
-        const response = await onFlowPublish(pathName.split('/').pop()!, true)
+        const response = await onFlowPublish(pathname.split('/').pop()!, true)
         if (response) toast.message(response)
-    }, []);
+    }, [])
 
     const onAutomateFlow = async () => {
-        const flows:any = [];
-        const connectedEdges = edges.map((edge) => edge.target);
+        const flows: any = []
+        const connectedEdges = edges.map((edge) => edge.target)
         connectedEdges.map((target) => {
-            nodes.forEach((node) => {
+            nodes.map((node) => {
                 if (node.id === target) {
-                    flows.push(node.type);
+                    flows.push(node.type)
                 }
             })
         })
-        setIsFlow(flows);
+
+        setIsFlow(flows)
     }
 
     useEffect(() => {
-        onAutomateFlow();
+        onAutomateFlow()
     }, [edges])
 
     return (
@@ -63,14 +64,15 @@ const FlowInstance = ({children, edges, nodes}: Props) => {
                     Save
                 </Button>
                 <Button
-                    onClick={onPublishWorkflow}
                     disabled={isFlow.length < 1}
+                    onClick={onPublishWorkflow}
                 >
                     Publish
                 </Button>
             </div>
             {children}
         </div>
-    );
-};
-export default FlowInstance;
+    )
+}
+
+export default FlowInstance

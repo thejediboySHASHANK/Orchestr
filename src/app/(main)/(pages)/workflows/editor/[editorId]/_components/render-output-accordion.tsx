@@ -1,19 +1,21 @@
-import {EditorState} from "@/providers/editor-provider";
-import {ConnectionProviderProps} from "@/providers/connections-providers";
-import {useOrchestrStore} from "@/store";
-import ContentBasedOnTitle from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/content-based-on-title";
+import { ConnectionProviderProps} from "@/providers/connections-providers";
+import { EditorState } from '@/providers/editor-provider'
+import { useOrchestrStore } from '@/store'
+import React from 'react'
+import ContentBasedOnTitle from './content-based-on-title'
 
 type Props = {
-    state: EditorState;
+    state: EditorState
     nodeConnection: ConnectionProviderProps
-};
-const RenderOutputAccordion = ({state, nodeConnection}: Props) => {
+}
+
+const RenderOutputAccordion = ({ state, nodeConnection }: Props) => {
     const {
         googleFile,
         setGoogleFile,
         selectedSlackChannels,
         setSelectedSlackChannels,
-    } = useOrchestrStore();
+    } = useOrchestrStore()
     return (
         <ContentBasedOnTitle
             nodeConnection={nodeConnection}
@@ -23,6 +25,7 @@ const RenderOutputAccordion = ({state, nodeConnection}: Props) => {
             selectedSlackChannels={selectedSlackChannels}
             setSelectedSlackChannels={setSelectedSlackChannels}
         />
-    );
-};
-export default RenderOutputAccordion;
+    )
+}
+
+export default RenderOutputAccordion

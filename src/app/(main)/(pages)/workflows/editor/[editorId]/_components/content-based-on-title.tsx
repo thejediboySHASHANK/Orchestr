@@ -1,3 +1,5 @@
+'use client'
+
 import {ConnectionProviderProps} from "@/providers/connections-providers";
 import {EditorState, useEditor} from "@/providers/editor-provider";
 import {nodeMapper} from "@/lib/types";
@@ -8,6 +10,13 @@ import {onContentChange} from "@/lib/editor-utils";
 import GoogleFileDetails from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/google-file-details";
 import GoogleDriveFiles from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/google-drive-files";
 import ActionButton from "@/app/(main)/(pages)/workflows/editor/[editorId]/_components/action-button";
+import {useEffect} from "react";
+import {getFileMetaData} from "@/app/(main)/(pages)/connections/_actions/google-connections";
+import axios from "axios";
+import {toast} from "sonner";
+// import {useEffect, useState} from "react";
+// import {usePathname} from "next/navigation";
+// import {onGetNodeTemplate} from "@/app/(main)/(pages)/workflows/editor/[editorId]/_actions/workflow-connections";
 
 export interface Option {
     value: string
@@ -40,8 +49,31 @@ const ContentBasedOnTitle = ({
                                  selectedSlackChannels,
                                  setSelectedSlackChannels
                              }: Props) => {
+
+    // const [Template, setTemplate] = useState('');
+    // const [isLoading, setIsLoading] = useState(false);
+    // const pathName = usePathname();
+
     const {selectedNode} = newState.editor;
     const title = selectedNode.data.title;
+
+
+    useEffect(() => {
+        const reqGoogle = async () => {
+            const response: { data: { message: { files: any } } } = await axios.get(
+                '/api/drive'
+            )
+            if (response) {
+                console.log(response.data.message.files[0])
+                toast.message("Fetched File")
+                setFile(response.data.message.files[0])
+            } else {
+                toast.error('Something went wrong')
+            }
+        }
+        reqGoogle()
+    }, [])
+
     //@ts-ignore
     const nodeConnectionType: any = nodeConnection[nodeMapper[title]];
 
@@ -96,6 +128,12 @@ const ContentBasedOnTitle = ({
                             </CardContent>
                         </Card>
                     )}
+                    {/*<p>{`Message`}</p>*/}
+                    {/*<Input*/}
+                    {/*    type="text"*/}
+                    {/*    value={nodeConnectionType.content}*/}
+                    {/*    onChange={(event) => onContentChange(nodeConnection, title, event)}*/}
+                    {/*/>*/}
                     {title === 'Google Drive' && <GoogleDriveFiles />}
                     <ActionButton
                         currentService={title}

@@ -1,19 +1,56 @@
 'use client'
-
-import {Connection} from "@/lib/types";
-import {EditorState} from "@/providers/editor-provider";
-import {useNodeConnections} from "@/providers/connections-providers";
-import {useOrchestrStore} from "@/store";
+import React from 'react'
 import ConnectionCard from "@/app/(main)/(pages)/connections/_components/connections-card";
-import {AccordionContent} from "@/components/ui/accordion";
-import MultipleSelector from "@/components/ui/multiple-selector";
+import { AccordionContent } from '@/components/ui/accordion'
+import MultipleSelector from '@/components/ui/multiple-selector'
+import { Connection } from '@/lib/types'
+import {useNodeConnections} from "@/providers/connections-providers";
+import { EditorState } from '@/providers/editor-provider'
+import {useOrchestrStore} from "@/store";
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+} from '@/components/ui/command'
+// import {
+//     Popover,
+//     PopoverContent,
+//     PopoverTrigger,
+// } from '@/components/ui/popover'
+import { CheckIcon, ChevronsUpDown } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
-type Props = {};
+const frameworks = [
+    {
+        value: 'next.js',
+        label: 'Next.js',
+    },
+    {
+        value: 'sveltekit',
+        label: 'SvelteKit',
+    },
+    {
+        value: 'nuxt.js',
+        label: 'Nuxt.js',
+    },
+    {
+        value: 'remix',
+        label: 'Remix',
+    },
+    {
+        value: 'astro',
+        label: 'Astro',
+    },
+]
+
 const RenderConnectionAccordion = ({
                                        connection,
-                                       state
+                                       state,
                                    }: {
-    connection: Connection,
+    connection: Connection
     state: EditorState
 }) => {
     const {
@@ -24,20 +61,22 @@ const RenderConnectionAccordion = ({
         accessTokenKey,
         alwaysTrue,
         slackSpecial,
-    } = connection;
+    } = connection
 
-    const {nodeConnection} = useNodeConnections();
-    const {
-        slackChannels, selectedSlackChannels, setSelectedSlackChannels
-    } = useOrchestrStore();
+    const { nodeConnection } = useNodeConnections()
+    const { slackChannels, selectedSlackChannels, setSelectedSlackChannels } =
+        useOrchestrStore()
 
-    const connectionData = (nodeConnection as any) [connectionKey];
+    const [open, setOpen] = React.useState(false)
+    const [value, setValue] = React.useState('')
+
+    const connectionData = (nodeConnection as any)[connectionKey]
+
     const isConnected =
         alwaysTrue ||
         (nodeConnection[connectionKey] &&
             accessTokenKey &&
-            connectionData[accessTokenKey!]);
-
+            connectionData[accessTokenKey!])
 
     return (
         <AccordionContent key={title}>
@@ -48,7 +87,7 @@ const RenderConnectionAccordion = ({
                         icon={image}
                         description={description}
                         type={title}
-                        connected={{[title]: isConnected}}
+                        connected={{ [title]: isConnected }}
                     />
                     {slackSpecial && isConnected && (
                         <div className="p-6">
@@ -79,4 +118,5 @@ const RenderConnectionAccordion = ({
         </AccordionContent>
     )
 }
-export default RenderConnectionAccordion;
+
+export default RenderConnectionAccordion

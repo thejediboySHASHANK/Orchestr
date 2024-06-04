@@ -1,39 +1,39 @@
 'use client'
-
-import {useEffect, useState} from "react";
-import {toast} from "sonner";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner'
+import axios from 'axios'
 import {getGoogleListener} from "@/app/(main)/(pages)/workflows/_actions/worflow-connections";
-import {Card, CardDescription} from "@/components/ui/card";
-import {CardContainer} from "@/components/global/3d-card";
-import {Button} from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
+import { Card, CardDescription } from '@/components/ui/card'
+import { CardContainer } from '@/components/global/3d-card'
 
-type Props = {};
+type Props = {}
+
 const GoogleDriveFiles = (props: Props) => {
-    const [loading, setLoading] = useState(false);
-    const [isListening, setIsListening] = useState(false);
+    const [loading, setLoading] = useState(false)
+    const [isListening, setIsListening] = useState(false)
 
     const reqGoogle = async () => {
-        setLoading(false);
-        const response = await axios.get('/api/drive-activity');
+        setLoading(true)
+        const response = await axios.get('/api/drive-activity')
         if (response) {
-            toast.message(response.data);
-            setLoading(false);
-            setIsListening(true);
+            toast.message(response.data)
+            setLoading(false)
+            setIsListening(true)
         }
-        setIsListening(false);
+        setIsListening(false)
     }
 
     const onListener = async () => {
-        const listener = await getGoogleListener();
+        const listener = await getGoogleListener()
         if (listener?.googleResourceId !== null) {
-            setIsListening(true);
+            setIsListening(true)
         }
     }
 
     useEffect(() => {
-        onListener();
-    }, []);
+        onListener()
+    }, [])
 
     return (
         <div className="flex flex-col gap-3 pb-6">
@@ -75,6 +75,7 @@ const GoogleDriveFiles = (props: Props) => {
                 </Button>
             )}
         </div>
-    );
-};
-export default GoogleDriveFiles;
+    )
+}
+
+export default GoogleDriveFiles

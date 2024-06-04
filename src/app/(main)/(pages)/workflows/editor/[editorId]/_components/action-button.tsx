@@ -1,22 +1,28 @@
-import {ConnectionProviderProps} from "@/providers/connections-providers";
-import {Option} from "@/store";
-import {usePathname} from "next/navigation";
-import {Button} from "@/components/ui/button";
-import {useCallback} from "react";
-import {postContentToWebHook} from "@/app/(main)/(pages)/connections/_actions/discord-connection";
-import {toast} from "sonner";
-import {onCreateNodeTemplate} from "@/app/(main)/(pages)/workflows/editor/[editorId]/_actions/workflow-connections";
-import {onCreateNewPageInDatabase} from "@/app/(main)/(pages)/connections/_actions/notion-connection";
-import {postMessageToSlack} from "@/app/(main)/(pages)/connections/_actions/slack-connection";
+import React, { useCallback } from 'react'
+import { Option } from './content-based-on-title'
+import{ConnectionProviderProps} from "@/providers/connections-providers";
+import { usePathname } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { postContentToWebHook } from '@/app/(main)/(pages)/connections/_actions/discord-connection'
+import {onCreateNodeTemplate} from "@/app/(main)/(pages)/workflows/_actions/worflow-connections";
+import { toast } from 'sonner'
+import { onCreateNewPageInDatabase } from '@/app/(main)/(pages)/connections/_actions/notion-connection'
+import { postMessageToSlack } from '@/app/(main)/(pages)/connections/_actions/slack-connection'
 
 type Props = {
-    currentService: string;
-    nodeConnection: ConnectionProviderProps;
-    channels?: Option[];
-    setChannels?: (value: Option[]) => void;
-};
-const ActionButton = ({currentService, nodeConnection, channels, setChannels}: Props) => {
-    const pathName = usePathname();
+    currentService: string
+    nodeConnection: ConnectionProviderProps
+    channels?: Option[]
+    setChannels?: (value: Option[]) => void
+}
+
+const ActionButton = ({
+                          currentService,
+                          nodeConnection,
+                          channels,
+                          setChannels,
+                      }: Props) => {
+    const pathname = usePathname()
 
     const onSendDiscordMessage = useCallback(async () => {
         const response = await postContentToWebHook(
@@ -69,12 +75,12 @@ const ActionButton = ({currentService, nodeConnection, channels, setChannels}: P
         }
     }, [nodeConnection.slackNode, channels])
 
-    const onCreateLocalNodeTemplate = useCallback(async () => {
+    const onCreateLocalNodeTempate = useCallback(async () => {
         if (currentService === 'Discord') {
             const response = await onCreateNodeTemplate(
                 nodeConnection.discordNode.content,
                 currentService,
-                pathName.split('/').pop()!
+                pathname.split('/').pop()!
             )
 
             if (response) {
@@ -85,7 +91,7 @@ const ActionButton = ({currentService, nodeConnection, channels, setChannels}: P
             const response = await onCreateNodeTemplate(
                 nodeConnection.slackNode.content,
                 currentService,
-                pathName.split('/').pop()!,
+                pathname.split('/').pop()!,
                 channels,
                 nodeConnection.slackNode.slackAccessToken
             )
@@ -99,7 +105,7 @@ const ActionButton = ({currentService, nodeConnection, channels, setChannels}: P
             const response = await onCreateNodeTemplate(
                 JSON.stringify(nodeConnection.notionNode.content),
                 currentService,
-                pathName.split('/').pop()!,
+                pathname.split('/').pop()!,
                 [],
                 nodeConnection.notionNode.accessToken,
                 nodeConnection.notionNode.databaseId
@@ -110,7 +116,6 @@ const ActionButton = ({currentService, nodeConnection, channels, setChannels}: P
             }
         }
     }, [nodeConnection, channels])
-
 
     const renderActionButton = () => {
         switch (currentService) {
@@ -124,7 +129,7 @@ const ActionButton = ({currentService, nodeConnection, channels, setChannels}: P
                             Test Message
                         </Button>
                         <Button
-                            onClick={onCreateLocalNodeTemplate}
+                            onClick={onCreateLocalNodeTempate}
                             variant="outline"
                         >
                             Save Template
@@ -142,7 +147,7 @@ const ActionButton = ({currentService, nodeConnection, channels, setChannels}: P
                             Test
                         </Button>
                         <Button
-                            onClick={onCreateLocalNodeTemplate}
+                            onClick={onCreateLocalNodeTempate}
                             variant="outline"
                         >
                             Save Template
@@ -160,7 +165,7 @@ const ActionButton = ({currentService, nodeConnection, channels, setChannels}: P
                             Send Message
                         </Button>
                         <Button
-                            onClick={onCreateLocalNodeTemplate}
+                            onClick={onCreateLocalNodeTempate}
                             variant="outline"
                         >
                             Save Template
@@ -172,5 +177,7 @@ const ActionButton = ({currentService, nodeConnection, channels, setChannels}: P
                 return null
         }
     }
-};
-export default ActionButton;
+    return renderActionButton()
+}
+
+export default ActionButton
