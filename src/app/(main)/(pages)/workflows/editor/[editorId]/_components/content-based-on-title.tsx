@@ -64,9 +64,11 @@ const ContentBasedOnTitle = ({
                 '/api/drive'
             )
             if (response) {
-                console.log(response.data.message.files[0])
-                toast.message("Fetched File")
-                setFile(response.data.message.files[0])
+                // Take only the first three files, if they exist
+                const firstThreeFiles = response.data.message.files.slice(0, 3);
+                console.log(firstThreeFiles);
+                toast.success("Files fetched successfully");
+                setFile(firstThreeFiles); // Update state with the new files
             } else {
                 toast.error('Something went wrong')
             }
