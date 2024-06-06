@@ -1,14 +1,18 @@
-import { postContentToWebHook } from '@/app/(main)/(pages)/connections/_actions/discord-connection'
-import { onCreateNewPageInDatabase } from '@/app/(main)/(pages)/connections/_actions/notion-connection'
-import { postMessageToSlack } from '@/app/(main)/(pages)/connections/_actions/slack-connection'
-import { db } from '@/lib/db'
+import {postContentToWebHook} from '@/app/(main)/(pages)/connections/_actions/discord-connection'
+import {onCreateNewPageInDatabase} from '@/app/(main)/(pages)/connections/_actions/notion-connection'
+import {postMessageToSlack} from '@/app/(main)/(pages)/connections/_actions/slack-connection'
+import {db} from '@/lib/db'
 import axios from 'axios'
-import { headers } from 'next/headers'
-import { NextRequest } from 'next/server'
+import {headers} from 'next/headers'
+import {NextRequest, NextResponse} from 'next/server'
+import {google} from "googleapis";
+import {auth, clerkClient} from "@clerk/nextjs/server";
+import {v4 as uuidv4} from "uuid";
 
 export async function POST(req: NextRequest) {
     console.log('🔴 Changed', Date.now())
     const headersList = headers()
+    // console.log(headersList);
     let channelResourceId
     headersList.forEach((value, key) => {
         if (key == 'x-goog-resource-id') {
@@ -21,7 +25,7 @@ export async function POST(req: NextRequest) {
             where: {
                 googleResourceId: channelResourceId,
             },
-            select: { clerkId: true, credits: true },
+            select: {clerkId: true, credits: true},
         })
         if ((user && parseInt(user.credits!) > 0) || user?.credits == 'Unlimited') {
             const workflow = await db.workflows.findMany({
@@ -135,13 +139,13 @@ export async function POST(req: NextRequest) {
                 )
             }
         }
+        return Response.json(
+            {
+                message: 'success',
+            },
+            {
+                status: 200,
+            }
+        )
     }
-    return Response.json(
-        {
-            message: 'success',
-        },
-        {
-            status: 200,
-        }
-    )
 }

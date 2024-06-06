@@ -33,7 +33,6 @@ export async function GET() {
 
     try {
         const response = await drive.files.list()
-
         if (response) {
             return Response.json(
                 {
