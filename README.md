@@ -3,13 +3,26 @@
 (Click on the banner to open demo video on Youtube)
 [![Watch the video](https://img.youtube.com/vi/yX6paB1F_5U/maxresdefault.jpg)](https://www.youtube.com/watch?v=yX6paB1F_5U)
 
+## Development Status
+
+Please note that OrchestrAI is currently in the development phase and has not been commercialized. The repository and its contents are intended for developmental use and are not yet available for public release. This stage allows us to refine functionalities and ensure robust integration across various platforms before a broader deployment. Stakeholders and potential contributors should be aware that the project's features and codebase are subject to change as we enhance and expand its capabilities.
+
+
 ## Table of Contents
 - [Motivation and Need of the project](#motivation-and-need-of-the-project)
 - [Overview](#overview)
-- [Current Integrations & Planned](#cuurent-integrations-&-planned)
+- [Current Integrations & Planned](#current-integrations--planned)
 - [Demo](#demo-pics)
 - [How to Run](#how-to-run)
 - [Contributing](#contributing)
+
+## Motivation and Need of the project
+
+In today's fast-paced business environment, teams across marketing, sales, operations, and IT face increasingly complex workflows that can hinder efficiency and slow down growth. OrchestrAI was conceived to address these challenges by providing a powerful, no-code solution that simplifies the integration and automation of routine tasks. By leveraging AI technologies, OrchestrAI enables these teams to focus more on strategic activities rather than getting bogged down by repetitive processes.
+
+The need for such a tool has never been greater as businesses seek to harness the full potential of digital transformation. OrchestrAI not only reduces the technical barriers typically associated with automation but also democratizes the ability to innovate, making advanced technology accessible to non-technical users. This opens up opportunities for creativity and efficiency improvements that were previously limited to those with coding skills.
+
+Our goal with OrchestrAI is to empower organizations to not only keep up with but lead in their respective industries by seamlessly integrating cutting-edge AI functionalities into their daily operations. Join us in transforming the landscape of business automation and enhancing productivity through intelligent, user-friendly technology.
 
 ## Overview
 
