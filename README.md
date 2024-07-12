@@ -39,14 +39,21 @@ OrchestrAI activates the designated actions in the connected services to facilit
 
 ### Current Integrations
 
-Below is a table showing the currently available integrations within OrchestrAI:
+<div align="center">
 
-| Integration | Type        | Status           | Description                                           |
-|-------------|-------------|------------------|-------------------------------------------------------|
-| Google Drive| Trigger     | Active           | Listens for any changes and initiates workflows.      |
-| Discord     | Listener    | Active           | Receives notifications and automates responses.       |
-| Slack       | Listener    | Active           | Automates notifications and task-related workflows.   |
-| Notion      | Listener    | Planned          | Future integration for document and knowledge management. |
+| Integration  | Type        | Status           | Description                                                  |
+|--------------|-------------|------------------|--------------------------------------------------------------|
+| Google Drive | Trigger     | Active           | Listens for any changes and initiates workflows.             |
+| Discord      | Listener    | Active           | Receives notifications and automates responses.              |
+| Slack        | Listener    | Active           | Automates notifications and task-related workflows.          |
+| Notion       | Listener    | Planned          | Future integration for document and knowledge management.    |
+| ChatGPT      | Listener    | Planned          | Planned for enhancing interactive and automated responses.   |
+| Google Sheets| Listener    | Planned          | Planned for automating data-driven tasks and analysis.       |
+| Gmail        | Listener    | Planned          | Planned for automating email-based workflows and alerts.     |
+| WhatsApp     | Listener    | Planned          | Planned for messaging and notifications automation.          |
+| Telegram     | Listener    | Planned          | Planned for secure messaging and automation of communications.|
+
+</div>
 
 ## Demo
 
