@@ -22,14 +22,20 @@
 
 ### How It Works
 
-Upon launching, the server begins listening for incoming TCP connections. When a connection is established, it accepts the connection and spins off a new thread dedicated to handling that specific client. Each thread performs the following tasks:
-- Parses the client’s HTTP request.
-- Checks the cache for a stored response.
-- If cached, returns the response directly to the client.
-- If not cached, forwards the request to the designated remote server, retrieves the response, sends it back to the client, and stores it in the cache.
+OrchestrAI leverages Google Drive as an action trigger (for now, click here to see future integrations being developed) to initiate workflows that integrate seamlessly with other applications like Discord, Slack, and Notion. 
+When a specified event occurs in Google Drive, such as a new file upload or update, 
+OrchestrAI activates the designated actions in the connected services to facilitate real-time responses and automate tasks efficiently.
 
-This architecture not only enhances the responsiveness of the proxy server but also significantly reduces unnecessary network traffic by serving repeated requests directly from the cache.
+### Setting Up Your First Workflow
 
+1. **Define the Trigger**:
+   Configure Google Drive as the trigger. Specify the events within Google Drive that should start the workflow.
+
+2. **Configure the Actions**:
+   Choose and set up the actions that should be executed in Discord, Slack, or Notion once the trigger event occurs.
+
+3. **Test and Deploy**:
+   Test the workflow thoroughly to ensure that it functions as intended. Once confirmed, deploy it to automate your tasks without further manual intervention.
 
 ## Demo
 
