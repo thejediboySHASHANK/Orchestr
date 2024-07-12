@@ -1,5 +1,4 @@
-# OrchestrAI - A no-code Automation tool to automate your business
-
+# OrchestrAI - No-code automation
 (Click on the banner to open demo video on Youtube)
 [![Watch the video](https://img.youtube.com/vi/yX6paB1F_5U/maxresdefault.jpg)](https://www.youtube.com/watch?v=yX6paB1F_5U)
 
