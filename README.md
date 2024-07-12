@@ -6,7 +6,8 @@
 ## Table of Contents
 - [Motivation and Need of the project](#motivation-and-need-of-the-project)
 - [Overview](#overview)
-- [Demo](#demo)
+- [Current Integrations & Planned](#cuurent-integrations-&-planned)
+- [Demo](#demo-pics)
 - [How to Run](#how-to-run)
 - [Contributing](#contributing)
 
@@ -56,13 +57,11 @@ OrchestrAI activates the designated actions in the connected services to facilit
 
 </div>
 
-## Demo
+## Demo Pics
 
-![cache1](https://github.com/thejediboySHASHANK/WebServerLRU/assets/95047201/a4b89400-fa83-4a22-b4ec-0b8d04db2462)
-![cache2](https://github.com/thejediboySHASHANK/WebServerLRU/assets/95047201/b0273da1-947c-4b4d-8df8-1d6dfed511d6)
+![image](https://github.com/user-attachments/assets/0699c2bc-c807-446a-9ec3-d33b68f343af)
+![image](https://github.com/user-attachments/assets/ec4bf2f3-0d98-4ffd-bc2b-bd70c05e2f65)
 
-- When website is opened for the first time `(url not found)` then cache will be missed.
-- Then if you again open that website again then `Data is retrieved from the cache` will be printed.
 
 ## How to Run
 - **Get Started Easily:** Setting up OrchestrAI locally involves a few detailed steps due to its comprehensive integrations and features. To ensure a smooth setup, please [open an issue](https://github.com/thejediboySHASHANK/Orchestr/issues) in the repository, and we'll provide you with detailed, customized guidance for your environment. This will help streamline your installation process and get you up and running quickly!
