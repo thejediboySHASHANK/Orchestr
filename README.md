@@ -38,7 +38,7 @@ OrchestrAI activates the designated actions in the connected services to facilit
 3. **Test and Deploy**:
    Test the workflow thoroughly to ensure that it functions as intended. Once confirmed, deploy it to automate your tasks without further manual intervention.
 
-### Current Integrations
+## Current Integrations & Planned
 
 <div align="center">
 
