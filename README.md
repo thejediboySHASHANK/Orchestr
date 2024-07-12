@@ -65,18 +65,10 @@ OrchestrAI activates the designated actions in the connected services to facilit
 - Then if you again open that website again then `Data is retrieved from the cache` will be printed.
 
 ## How to Run
-
-```
-$ git clone https://github.com/thejediboySHASHANK/WebServerLRU.git
-$ cd WebServerLRU
-$ make all
-$ ./proxy <port no.>
-```
-
-- This code can only be ran in a Linux Machine or in WSL.
-- Please disable your browser cache.
+- **Get Started Easily:** Setting up OrchestrAI locally involves a few detailed steps due to its comprehensive integrations and features. To ensure a smooth setup, please [open an issue](https://github.com/thejediboySHASHANK/Orchestr/issues) in the repository, and we'll provide you with detailed, customized guidance for your environment. This will help streamline your installation process and get you up and running quickly!
 
 ## Contributing
 
 Liked my project? Please feel free to star, raise a PR or fork to extend this project! 🚀
+This is a big and impactful project, collaborators are always welcomed!
 
