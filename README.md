@@ -9,25 +9,16 @@
 - [How to Run](#how-to-run)
 - [Contributing](#contributing)
 
-## Features
+## Overview
+
+**OrchestrAI**  is a cutting-edge no-code automation tool designed to streamline and simplify complex workflows through seamless AI integration. It empowers users to create sophisticated automation systems with ease, merging AI technologies like GPT and Gemini to enhance efficiency and productivity across various applications.
+
+### Key Features
 
 - **No-Code Tool**: Easily create complex automations without writing a single line of code.
 - **AI Integration**: Seamlessly integrate with AI technologies to enhance functionality.
 - **Customizable Workflows**: Tailor workflows to meet the specific needs of your processes.
 - **User-Friendly Interface**: A clean, intuitive interface that makes automation accessible to everyone.
-
-## Overview
-
-**WebServerLRU** is a robust, multi-threaded web proxy server implemented in C. It leverages the POSIX threads (pthreads) library to manage multiple client requests concurrently, ensuring efficient handling of network traffic. The server integrates key concepts from operating systems such as semaphores and mutexes to securely manage concurrent access to shared resources.
-
-### Key Features
-
-- **Multi-Threading**: Utilizes the pthreads library to enable simultaneous processing of multiple client requests.
-- **Concurrency Control**: Employs mutexes and semaphores to ensure safe access to shared resources among threads.
-- **HTTP Request Handling**: Each incoming connection triggers the creation of a new thread that processes the client's HTTP request using the `proxy_parse.h` library, and forwards it to the intended remote server.
-- **Response Caching**: Implements an LRU (Least Recently Used) caching mechanism to optimize response times. The server checks this cache before forwarding requests to the remote server, reducing latency and network load.
-- **Socket Programming**: Uses standard socket programming functions such as `socket()`, `bind()`, `listen()`, and `accept()` for server setup. Data transmission is handled through `send()` and `recv()` functions.
-- **DNS Resolution**: Incorporates `gethostbyname()` to resolve hostnames to IP addresses, facilitating the handling of HTTP requests to various domains.
 
 ### How It Works
 
