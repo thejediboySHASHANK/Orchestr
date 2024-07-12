@@ -37,6 +37,17 @@ OrchestrAI activates the designated actions in the connected services to facilit
 3. **Test and Deploy**:
    Test the workflow thoroughly to ensure that it functions as intended. Once confirmed, deploy it to automate your tasks without further manual intervention.
 
+### Current Integrations
+
+Below is a table showing the currently available integrations within OrchestrAI:
+
+| Integration | Type        | Status           | Description                                           |
+|-------------|-------------|------------------|-------------------------------------------------------|
+| Google Drive| Trigger     | Active           | Listens for any changes and initiates workflows.      |
+| Discord     | Listener    | Active           | Receives notifications and automates responses.       |
+| Slack       | Listener    | Active           | Automates notifications and task-related workflows.   |
+| Notion      | Listener    | Planned          | Future integration for document and knowledge management. |
+
 ## Demo
 
 ![cache1](https://github.com/thejediboySHASHANK/WebServerLRU/assets/95047201/a4b89400-fa83-4a22-b4ec-0b8d04db2462)
